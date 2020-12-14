@@ -75,6 +75,6 @@ export async function getStaticPaths() {
       { params: { slug: 'sports' } },
       { params: { slug: 'technology' } }
     ],
-    fallback: true
+    fallback: false
   };
 }
