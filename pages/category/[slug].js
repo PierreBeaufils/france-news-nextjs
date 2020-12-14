@@ -1,14 +1,18 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
-import Article from '../components/Article'
-import Categories from '../components/Categories'
+import styles from '../../styles/Home.module.css'
+import Article from '../../components/Article'
+import Categories from '../../components/Categories'
 
-export default function Home({ posts }) {
+export default function Category({ posts }) {
+  const router = useRouter()
+  const { slug } = router.query
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>France News</title>
+        <title>France News - {slug}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -22,7 +26,6 @@ export default function Home({ posts }) {
             </a>
           </Link>
         </div>
-
 
         <Categories />
 
@@ -48,9 +51,10 @@ export default function Home({ posts }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ params }) {
+  const slug = params.slug
 
-  const res = await fetch(`http://newsapi.org/v2/top-headlines?country=fr&apiKey=${process.env.API_KEY}`)
+  const res = await fetch(`http://newsapi.org/v2/top-headlines?country=fr&category=${slug}&apiKey=${process.env.API_KEY}`)
   const response = await res.json()
   const posts = response.articles
 
@@ -59,4 +63,18 @@ export async function getStaticProps() {
       posts,
     },
   }
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { slug: 'business' } },
+      { params: { slug: 'health' } },
+      { params: { slug: 'entertainment' } },
+      { params: { slug: 'science' } },
+      { params: { slug: 'sports' } },
+      { params: { slug: 'technology' } }
+    ],
+    fallback: true
+  };
 }

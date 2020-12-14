@@ -1,6 +1,6 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,12 +8,13 @@
 }
 
 .main {
-  padding: 5rem 0;
+  background-color: #FFFFFF;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.10);
 }
 
 .footer {
@@ -76,20 +77,26 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
-  margin-top: 3rem;
+  max-width: 1200px;
+  margin-top: 10px;
 }
 
 .card {
-  margin: 1rem;
-  flex-basis: 45%;
-  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #FFF;
+  margin: 10px;
+  max-width: 300px;
+  height: 400px;
   text-align: left;
   color: inherit;
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
+  overflow: hidden;
+  -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.05);
 }
 
 .card:hover,
@@ -99,24 +106,100 @@
   border-color: #0070f3;
 }
 
-.card h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
+.card img {
+  height: 160px;
+  object-fit: cover;
 }
 
-.card p {
+.cardContent {
+  padding: 0 10px 10px 10px;
+  height: 100%;
+}
+
+.card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 16px;
+}
+
+.cardDescription {
   margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
+  font-size: 14px;
+  text-overflow: ellipsis;
 }
 
 .logo {
   height: 1em;
 }
 
+.categories {
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.categoryButton {
+  margin: 10px;
+  background-color: #1877F2;
+  color: white;
+  transition: all 0.15s ease;
+  border-radius: 25px;
+  padding: 10px 25px;
+  font-weight: 500;
+}
+
+.categoryButton:hover {
+  background-color: #0071c5;
+}
+
+.navbar {
+  width: 100%;
+  box-shadow: 0 1px 10px 0 rgba(33, 33, 33, .1);
+  padding: 10px;
+  margin-bottom: 10px;
+  background: linear-gradient(159deg, rgba(9, 79, 121, 1) 0%, rgba(28, 172, 201, 1) 100%);
+}
+
+.navbar h2 {
+  font-size: 28px;
+  color: #fff;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+
+  .card {
+    flex-direction: row;
+    margin: 5px;
+    max-width: 100%;
+    height: 100px;
+  }
+
+  .card img {
+    width: 40%;
+    height: auto;
+    flex-flow: row nowrap;
+  }
+
+  .card h3 {
+    font-size: 12px;
+  }
+
+  .cardDescription {
+    display: none;
+  }
+
+  .categoryButton {
+    margin: 5px;
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+
+  .navbar h2 {
+    font-size: 20px;
   }
 }
